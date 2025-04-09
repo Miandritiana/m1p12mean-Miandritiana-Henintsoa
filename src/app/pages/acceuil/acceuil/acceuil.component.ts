@@ -105,8 +105,7 @@ export class AcceuilComponent implements OnInit{
         this.rdvAttente = response.map((item: any) => ({
           date: item.createdAt || 'N/A', // Handle missing properties
           motif: item.infosup || 'No motif provided',
-          prestations: item.prestations || [],
-          propositiondates: item.propositiondates || [],
+          prestations: item.prestations || []
         }));
       },
       (error) => {
