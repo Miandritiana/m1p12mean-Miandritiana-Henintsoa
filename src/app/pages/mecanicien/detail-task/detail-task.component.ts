@@ -161,7 +161,7 @@ export class DetailTaskComponent implements OnChanges {
           (error) => {
             Swal.fire({
               title: 'Erreur',
-              text: 'Une erreur est survenue lors de la suppression.',
+              text: error?.error.message || 'Une erreur est survenue lors de la suppression.',
               icon: 'error'
             });
           }

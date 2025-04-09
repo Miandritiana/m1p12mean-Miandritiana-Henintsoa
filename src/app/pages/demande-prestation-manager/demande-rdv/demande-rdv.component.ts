@@ -61,6 +61,7 @@ export class DemandeRdvComponent implements OnInit {
   proposeDateSelected: string = '';
   proposeForm!: FormGroup;
   mecanicienForm!: FormGroup;
+  messageError: string = '';
 
   constructor(
     private managerService: ManagerService,
@@ -124,6 +125,7 @@ export class DemandeRdvComponent implements OnInit {
       },
       (error) => {
         console.error('Error fetching clients:', error);
+        this.messageError = error.error.message;
       }
     );
   }
@@ -166,6 +168,8 @@ export class DemandeRdvComponent implements OnInit {
       return;
     }
 
+    console.log("dat;oanuisf hit the road "+ this.dateSelectedFormated);
+
     this.managerService.rendezVousValider(
       this.idRendezVousSelected,
       this.dateSelectedFormated,
@@ -177,8 +181,10 @@ export class DemandeRdvComponent implements OnInit {
         this.toggleLiveDemo();
         this.getRendezVousEnAttente();
       },
-      error: (error: any) => {  // Explicitly type 'error'
-        Swal.fire('Error', error?.error || 'Erreur', 'error');
+      error: (error: any) => {
+        const message = error?.error?.error || 'Erreur';
+        Swal.fire('Erreur', message, 'error');
+        this.proposeModal = true;
       }
     });
 
@@ -193,6 +199,10 @@ export class DemandeRdvComponent implements OnInit {
     const date = this.proposeForm.get('selectedDatePropose')?.value;
 
     if (date) {
+
+      this.dateSelected = date; // store raw string
+      this.dateSelectedFormated = new Date(date);
+
       this.getMecanicienDispo(date);
       this.proposeDateSelected = date;
       this.toggleLiveDemoPropose(); // Close current modal

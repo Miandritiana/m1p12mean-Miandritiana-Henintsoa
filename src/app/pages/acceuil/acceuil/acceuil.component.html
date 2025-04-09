@@ -9,7 +9,7 @@
 </c-row>
 
 <c-row class="mt-4">
-    <c-col xs="6">
+    <c-col xs="8">
         <h3>Demande rendez-vous en attente</h3>
         <div *ngIf="errorMessage" class="alert alert-danger">
             {{ errorMessage }}
@@ -25,7 +25,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let rowData of rdvAttente">
-                <td class="text-nowrap">{{ rowData.date ? (rowData.date.toString() | formatDate:'full') : '' }}</td>
+                <td class="text-nowrap">{{ rowData.date ? (rowData.date.toString() | formatDate:'full':'fr') : '' }}</td>
                 <td>
                   <ul class="mb-0">
                     <li *ngFor="let prestation of rowData.prestations">

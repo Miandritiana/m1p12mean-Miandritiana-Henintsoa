@@ -1,7 +1,12 @@
 <c-row class="mt-4">
     <div class="col-12">
         <h3 class="mb-3">Clients et Rendez-vous</h3>
-        <table class="table">
+        
+        <div *ngIf="messageError" class="alert alert-danger">
+          {{ messageError }}
+        </div>
+        
+        <table class="table" *ngIf="!messageError">
             <thead>
                 <tr>
                     <th scope="col">Client</th>
@@ -12,19 +17,21 @@
             </thead>
             <tbody>
                 <tr *ngFor="let client of clients">
-                    <td class="align-items-center">{{ client.client }}</td>
+                    <td class="text-center">{{ client.client }}</td>
                     <td>
-                      {{ client.prestations.join(', ') }}
+                      <li *ngFor="let prestation of client.prestations">
+                        {{ prestation }}
+                      </li>
                     </td>
                     <td>
                       <div *ngFor="let date of client.propositiondates">
                         <input
-                          class="me-2"
+                          class="me-2 text-center"
                           type="radio"
                           name="date{{client.idrendezvous}}"
                           [value]="date"
                           (change)="selectDate(date, client.idrendezvous)">
-                        <span>{{ date | date:'dd/MM/yyyy HH:mm' }}</span>
+                        <span>{{ date | formatDate:'full':'fr' }}</span>
                       </div>
                     </td>
                     <td class="d-flex">

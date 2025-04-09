@@ -186,12 +186,13 @@ export class VotreDevisComponent implements OnChanges {
             if (result.isConfirmed) {
               this.acceptezDevis(this.idDevis);
             }else{
+              this.totalPrix = 0;
               this.prestations.forEach((category: any) => {
                 category.prestations.forEach((prestation: any) => {
                   prestation.selected = false; 
                 });
               });
-                this.messageEvent.emit(2);
+              this.messageEvent.emit(2);
             }
           });
         },
@@ -223,6 +224,7 @@ export class VotreDevisComponent implements OnChanges {
     });
   }
   
+
 
   togglePrestationSelection(event: any, prestation: any) {
     if (event.target.checked) {

@@ -15,5 +15,16 @@ export class GarageService {
     const url = `${this.url}/notifications/${idClient}`;
     return this.http.get<any>(url);
   }
+
+  luNotif(iduser: string, idnotif: string): Observable<any> {
+    return this.http.put<any>(`${this.url}/notifications/${idnotif}`, iduser);
+  }
+
+  luAllNotif(iduser: string):  Observable<any> {
+    const data = {
+      iduser: iduser
+    }
+    return this.http.put<any>(`${this.url}/notifications`, data);
+  }
   
 }
