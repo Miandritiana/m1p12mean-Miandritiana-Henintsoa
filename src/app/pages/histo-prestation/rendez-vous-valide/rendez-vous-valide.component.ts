@@ -112,16 +112,20 @@ export class RendezVousValideComponent implements OnInit {
   }
 
   appliquer() {
-
     const dateObject = new Date(this.selectedDate);
-    this.selectedDateFormated = dateObject;
+    this.selectedDateFormated = new Date(Date.UTC(
+      dateObject.getFullYear(),
+      dateObject.getMonth(),
+      dateObject.getDate(),
+      dateObject.getHours(),
+      dateObject.getMinutes()
+    ));
 
     console.log(this.selectedDateFormated);
 
-
     this.managerService.histoRdvValider(this.selectedDateFormated, undefined).subscribe(
       (data) => {
-        this.histoRdvValider = data;
+      this.histoRdvValider = data;
       },
       (error) => {
         console.error('Erreur lors du chargement des rendez-vous', error);

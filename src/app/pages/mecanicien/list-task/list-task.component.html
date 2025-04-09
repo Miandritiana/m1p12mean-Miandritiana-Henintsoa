@@ -9,14 +9,14 @@
           <tr>
             <th scope="col">Date</th>
             <th scope="col">Client</th>
-            <th scope="col">Prestation</th>
+            <th scope="col">Prestations</th>
             <th scope="col">Status</th>
             <th scope="col">Détail</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let tache of listTache">
-            <td class="align-items-center">{{ tache.datevalide | date:'dd/MM/yyyy HH:mm' }}</td>
+            <td class="align-items-center">{{ tache.datevalide | date:'dd/MM/yyyy HH:mm':'UTC' }}</td>
             <td class="align-items-center">{{ tache.client }}</td>
             <td>
               <ul>
