@@ -21,7 +21,7 @@ import {
 
 } from '@coreui/angular';
 import { IconDirective } from '@coreui/icons-angular';
-import { NgFor, NgStyle, NgIf, CommonModule } from '@angular/common';
+import { NgFor, NgStyle, NgIf } from '@angular/common';
 import { StepperService } from '../../../services/stepper.service';
 import { DemandePrestationComponent } from '../../demande-prestation/demande-prestation/demande-prestation.component';
 import { Router } from '@angular/router';
@@ -56,7 +56,7 @@ import Swal from 'sweetalert2';
     NgIf,
     NgStyle,
     DemandePrestationComponent,
-    FormatDatePipe, CommonModule
+    FormatDatePipe
   ],
   templateUrl: './acceuil.component.html',
   styleUrl: './acceuil.component.scss'
