@@ -18,18 +18,26 @@
             <table cTable>
             <thead>
                 <tr cTableColor="light">
-                <th scope="col">Date</th>
+                <th scope="col">Date demande</th>
                 <th scope="col">Prestations demandées</th>
+                <th scope="col">Dates rendez-vous</th>
                 <th scope="col">Motif</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let rowData of rdvAttente">
-                <td class="text-nowrap">{{ rowData.date ? (rowData.date.toString() | formatDate:'full':'fr') : '' }}</td>
+                <td class="text-nowrap">{{ rowData.date ? (rowData.date.toString() | date:'dd/MM/yyyy HH:mm') : '' }}</td>
                 <td>
                   <ul class="mb-0">
                     <li *ngFor="let prestation of rowData.prestations">
                       {{ prestation.nom || prestation }}
+                    </li>
+                  </ul>
+                </td>
+                <td>
+                  <ul class="mb-0">
+                    <li *ngFor="let proposition of rowData.propositiondates">
+                      {{ proposition | date:'dd/MM/yyyy HH:mm':'UTC' }}
                     </li>
                   </ul>
                 </td>
