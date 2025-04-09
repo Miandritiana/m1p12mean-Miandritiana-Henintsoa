@@ -25,7 +25,7 @@ import {
 } from '@coreui/angular';
 
 import { IconDirective } from '@coreui/icons-angular';
-import { GarageService } from 'src/app/services/garage.service';
+import { GarageService } from '../../../services/garage.service';
 import { NgIf, NgFor, NgClass } from '@angular/common';
 
 @Component({
@@ -62,6 +62,8 @@ export class DefaultHeaderComponent extends HeaderComponent {
   public override role: string = '';
   public idUser: string = '';
 
+  public link: string = '';
+
   readonly colorModes = [
     { name: 'light', text: 'Light', icon: 'cilSun' },
     { name: 'dark', text: 'Dark', icon: 'cilMoon' },
@@ -94,11 +96,12 @@ export class DefaultHeaderComponent extends HeaderComponent {
     this.role = this.localStorageService.getLoginInfo()?.role ?? '';
     this.idUser = this.localStorageService.getLoginInfo()?.iduser ?? '';
     this.loadNotifications();
+    this.loadRedirect(this.role);
+
   }
 
   handleLogoutClick(event: Event) {
     event.preventDefault();
-    console.log('logout clicked');
     this.localStorageService.logout();
     this.router.navigate(['/login']);
   }
@@ -114,4 +117,29 @@ export class DefaultHeaderComponent extends HeaderComponent {
     );
   }
 
+  loadRedirect(role: string) {
+    const iduser = this.localStorageService.getLoginInfo()?.iduser ?? '';
+    
+    if (role == '2') {
+      this.link = '/#/tache';
+
+    } else if (role == '3') {
+      this.link = '/#/demande-prestation-manager';
+
+    } else if (role == '1') {
+      this.link = '/#/acceuil';
+      
+    }
+    
+  }
+
+  handleNotifClick(event: MouseEvent) {
+    event.preventDefault(); // Prevent default link behavior
+  
+    this.garageService.luAllNotif(this.idUser).subscribe(() => {
+      // Redirect after marking as read
+    window.location.href = this.link;
+    });
+  }
+  
 }
