@@ -1,0 +1,28 @@
+<h3>Liste des proposition</h3>
+<div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+</div>
+<div class="table-responsive" *ngIf="!errorMessage">
+    <table cTable>
+    <thead>
+        <tr cTableColor="light">
+        <th scope="col">Prestations demandées</th>
+        <th scope="col">Mécanicien</th>
+        <th scope="col">Date proposée</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let rowData of listNewPropose">
+        <td>
+          <ul class="mb-0">
+            <li *ngFor="let prestation of rowData.prestations">
+              {{ prestation.nom || prestation }}
+            </li>
+          </ul>
+        </td>
+        <td class="text-nowrap">{{ rowData.mecanicien }}</td>
+        <td class="text-nowrap">{{ rowData.propositiondate | formatDate:'full':'fr' }}</td>
+        </tr>
+    </tbody>
+    </table>
+</div>

@@ -185,6 +185,7 @@ export class DemandeRdvComponent implements OnInit {
         const message = error?.error?.error || 'Erreur';
         Swal.fire('Erreur', message, 'error');
         this.proposeModal = true;
+        this.showSaisie = false;
       }
     });
 

@@ -30,6 +30,7 @@ import { LocalStorageService } from '../../../services/local-storage.service';
 import { RendezVous } from '../../../modele/RendezVous';
 import { FormatDatePipe } from '../../../validator/FormatDatePipe';
 import Swal from 'sweetalert2';
+import { ListNewProposeDateComponent } from '../list-new-propose-date/list-new-propose-date.component';
 
 @Component({
   selector: 'app-acceuil',
@@ -56,7 +57,8 @@ import Swal from 'sweetalert2';
     NgIf,
     NgStyle,
     DemandePrestationComponent,
-    FormatDatePipe, CommonModule
+    FormatDatePipe, CommonModule,
+    ListNewProposeDateComponent
   ],
   templateUrl: './acceuil.component.html',
   styleUrl: './acceuil.component.scss'
