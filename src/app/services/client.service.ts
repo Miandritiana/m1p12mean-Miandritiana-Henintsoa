@@ -16,11 +16,18 @@ export class ClientService {
     return this.http.get<any>(`${this.url}/rendezvous/enattente/${idclient}`);
   }
 
-  listNewProposeDate(idclient: string) : Observable<any> {
+  listNewProposeDate(idclient: string): Observable<any> {
     return this.http.get<any>(`${this.url}/rendezvous/proposition/${idclient}`);
   }
   
-
+  accepetDatePropose(idRdv: string, idclient: string): Observable<any> {
+    const data = {
+      idrendezvous: idRdv,
+      confirmation: 1,
+      idclient: idclient
+    }
+    return this.http.post<any>(`${this.url}/rendezvous/confirmation`, data);
+  }
 
   
 }

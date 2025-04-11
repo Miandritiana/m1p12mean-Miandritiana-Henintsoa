@@ -58,4 +58,8 @@ export class ListNewProposeDateComponent implements OnInit {
       }
     );
   }
+
+  acceptDatePropose(idRdv: string) {
+    
+  }
 }

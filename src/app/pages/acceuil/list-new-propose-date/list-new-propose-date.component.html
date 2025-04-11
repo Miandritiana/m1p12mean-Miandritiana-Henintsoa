@@ -1,4 +1,4 @@
-<h3>Liste des proposition</h3>
+<h3>Liste des propositions</h3>
 <div *ngIf="errorMessage" class="alert alert-danger">
     {{ errorMessage }}
 </div>
@@ -9,6 +9,7 @@
         <th scope="col">Prestations demandées</th>
         <th scope="col">Mécanicien</th>
         <th scope="col">Date proposée</th>
+        <th scope="col">Action</th>
         </tr>
     </thead>
     <tbody>
@@ -22,6 +23,13 @@
         </td>
         <td class="text-nowrap">{{ rowData.mecanicien }}</td>
         <td class="text-nowrap">{{ rowData.propositiondate | formatDate:'full':'fr' }}</td>
+        <td>
+          <button
+              class="btn btn-success me-2"
+              (click)="acceptDatePropose(rowData.idrendezvous)">
+              Accepter
+          </button>
+        </td>
         </tr>
     </tbody>
     </table>

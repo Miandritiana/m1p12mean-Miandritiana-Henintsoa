@@ -63,6 +63,8 @@ export class DemandeRdvComponent implements OnInit {
   mecanicienForm!: FormGroup;
   messageError: string = '';
 
+  partProposeDate: boolean = false;
+
   constructor(
     private managerService: ManagerService,
     private formBuilder: FormBuilder,
@@ -132,6 +134,7 @@ export class DemandeRdvComponent implements OnInit {
 
   toggleLiveDemo() {
     this.showSaisie = !this.showSaisie;
+    this.partProposeDate = false;
   }
 
   toggleLiveDemoPropose() {
@@ -168,26 +171,46 @@ export class DemandeRdvComponent implements OnInit {
       return;
     }
 
-    console.log("dat;oanuisf hit the road "+ this.dateSelectedFormated);
+    if(this.partProposeDate) {
+      this.managerService.proposeDate(
+        this.idRendezVousSelected,
+        this.dateSelectedFormated,
+        this.idMecanicienSelected,
+        this.idClientSelected
+      ).subscribe({
+        next: (response: any) => {
+          Swal.fire('Success', 'Proposition envoyé!', 'success');
+          this.toggleLiveDemo();
+          this.getRendezVousEnAttente();
+        },
+        error: (error: any) => {
+          const message = error?.error?.error || 'Erreur';
+          Swal.fire('Erreur', message, 'error');
+          this.proposeModal = true;
+          this.showSaisie = false;
+        }
+      });
 
-    this.managerService.rendezVousValider(
-      this.idRendezVousSelected,
-      this.dateSelectedFormated,
-      this.idMecanicienSelected,
-      this.idClientSelected
-    ).subscribe({
-      next: (response: any) => {  // Explicitly type 'response' as 'any'
-        Swal.fire('Success', 'Rendez-vous confirmé!', 'success');
-        this.toggleLiveDemo();
-        this.getRendezVousEnAttente();
-      },
-      error: (error: any) => {
-        const message = error?.error?.error || 'Erreur';
-        Swal.fire('Erreur', message, 'error');
-        this.proposeModal = true;
-        this.showSaisie = false;
-      }
-    });
+    } else {
+      this.managerService.rendezVousValider(
+        this.idRendezVousSelected,
+        this.dateSelectedFormated,
+        this.idMecanicienSelected,
+        this.idClientSelected
+      ).subscribe({
+        next: (response: any) => {
+          Swal.fire('Success', 'Rendez-vous confirmé!', 'success');
+          this.toggleLiveDemo();
+          this.getRendezVousEnAttente();
+        },
+        error: (error: any) => {
+          const message = error?.error?.error || 'Erreur';
+          Swal.fire('Erreur', message, 'error');
+          this.proposeModal = true;
+          this.showSaisie = false;
+        }
+      });
+    }
 
   }
 
@@ -204,6 +227,9 @@ export class DemandeRdvComponent implements OnInit {
       this.dateSelected = date; // store raw string
       this.dateSelectedFormated = new Date(date);
 
+      console.log("baoniufapo mafia game "+this.dateSelectedFormated)
+
+      this.partProposeDate = true;
       this.getMecanicienDispo(date);
       this.proposeDateSelected = date;
       this.toggleLiveDemoPropose(); // Close current modal
