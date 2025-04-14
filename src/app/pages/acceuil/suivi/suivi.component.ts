@@ -11,9 +11,12 @@ import {
   RowComponent,
   TableDirective,
   TextColorDirective,
+  CardComponent,
+  CardBodyComponent,
 }
 from '@coreui/angular';
 import { Router } from '@angular/router';
+import { FormatCurrencyPipe } from '../../../validator/FormatCurrencyPipe';
 
 @Component({
   selector: 'app-suivi',
@@ -26,6 +29,9 @@ import { Router } from '@angular/router';
     RowComponent,
     TableDirective,
     TextColorDirective,
+    FormatCurrencyPipe,
+    CardComponent,
+    CardBodyComponent
   ],
   providers: [ClientService, LocalStorageService],
   templateUrl: './suivi.component.html',
@@ -35,6 +41,8 @@ export class SuiviComponent implements OnInit {
 
   listSuivi: any = [];
   errorMessage: string = '';
+  listDetail: any = [];
+  errorMessageDetail: string = '';
 
   ngOnInit() {
 
@@ -101,12 +109,25 @@ export class SuiviComponent implements OnInit {
     )
   }
 
+  getListDetail(idRdv: string) {
+    this.clientService.devisValideIdRdv(idRdv).subscribe(
+      (data: any) => {
+        this.listDetail = data;
+      },
+      (error) => {
+        console.error('Error fetching list detail:', error);
+        this.errorMessageDetail = error.error.message;
+      }
+    )
+  }
+
   reload() {
     const iduser = this.localStorageService.getLoginInfo()?.iduser ?? '';
     this.getListSuivi(iduser);
   }
+
   goDetail(idRdv: string)  {
-    
+    this.getListDetail(idRdv);
   }
 
 }

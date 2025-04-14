@@ -33,7 +33,7 @@ export class ClientService {
     return this.http.get<any>(`${this.url}/rendezvous/acceptes/${idclient}`);
   }
 
-  devisValideIdrdv(idRdv: string): Observable<any> {
+  devisValideIdRdv(idRdv: string): Observable<any> {
     return this.http.get<any>(`${this.url}/rendezvous/detailsdevis/${idRdv}`);
   }
   
