@@ -1,0 +1,48 @@
+<c-row class="mt-4">
+    <div class="col-12">
+        <div class="d-flex justify-content-between">
+            <h3>Suivi des préstations validées</h3>
+            <button class="btn btn-outline-primary mb-2" (click)="reload()">🔄</button>
+        </div>
+        <div *ngIf="errorMessage" class="alert alert-danger">
+            {{ errorMessage }}
+        </div>
+        <table class="table" *ngIf="!errorMessage">
+            <thead>
+            <tr>
+                <th scope="col">Validée le</th>
+                <th scope="col">Immatriculation</th>
+                <th scope="col">Mécanicien</th>
+                <th scope="col">Prestations</th>
+                <th scope="col">Status</th>
+                <th scope="col">Détail + Devis</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let rowData of listSuivi">
+                <td class="align-items-center">{{ rowData.datevalide | formatDate:'full':'fr' }}</td>
+                <td class="align-items-center">{{ rowData.immatriculation }}</td>
+                <td class="align-items-center">{{ rowData.mecanicien }}</td>
+                <td>
+                <ul>
+                    <li *ngFor="let prestation of rowData.prestations">
+                    {{ prestation.nom }}
+                    <span class="badge rounded-pill" [ngClass]="getBadgeClass(prestation.avancement)">{{ getBadgeLabel(prestation.avancement) }}</span>
+                    </li>
+                </ul>
+                </td>
+                <td>
+                <span class="badge rounded-pill" [ngClass]="getBadgeClass(rowData.avancement)">
+                    {{ getBadgeLabel(rowData.avancement) }}
+                </span>
+                </td>
+                <td>
+                    <button class="btn btn-outline-primary" (click)="goDetail(rowData.idrendezvous)">
+                    Voir détail
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+  </c-row>

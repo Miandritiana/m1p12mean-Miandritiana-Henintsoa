@@ -19,6 +19,10 @@ export const routes: Routes = [
         loadChildren: () => import('./pages/acceuil/routes').then((m) => m.routes) 
       },
       {
+        path: 'suivi',
+        loadComponent: () => import('./pages/acceuil/suivi/suivi.component').then(m => m.SuiviComponent)
+      },
+      {
         path: 'demande-prestation',
         loadChildren: () => import('./pages/demande-prestation/routes').then((m) => m.routes)
       }

@@ -13,6 +13,8 @@ import {
   TextColorDirective,
 }
 from '@coreui/angular';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-list-new-propose-date',
@@ -37,10 +39,25 @@ export class ListNewProposeDateComponent implements OnInit {
 
   ngOnInit() {
     const iduser = this.localStorageService.getLoginInfo()?.iduser ?? '';
+
+    const userRole = this.localStorageService.getLoginInfo()?.role ?? '';
+
+    if (userRole != '1') {
+      Swal.fire({
+        icon: 'error',
+        title: 'Accès refusé',
+        text: 'Vous n\'avez pas accès à cette page.',
+        confirmButtonText: 'OK'
+      }).then(() => {
+        this.router.navigate(['/login']);
+      });
+    }
+    
     this.getList(iduser);
   }
 
   constructor(
+    private router: Router,
     private clientService: ClientService,
     private localStorageService : LocalStorageService)
   { }

@@ -100,7 +100,7 @@ export class DefaultLayoutComponent {
               name: 'Préstation',
               url: '/parametre-prestation',
               icon: 'nav-icon-bullet',
-            }
+            },
           ],
         },
         {
