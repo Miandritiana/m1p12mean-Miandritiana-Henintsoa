@@ -60,6 +60,36 @@ export class ListNewProposeDateComponent implements OnInit {
   }
 
   acceptDatePropose(idRdv: string) {
-    
+    const idclient = this.localStorageService.getLoginInfo()?.iduser;
+
+    if (!idclient) {
+      console.error('ID client non défini');
+      Swal.fire({
+        icon: 'error',
+        title: 'Erreur',
+        text: 'Impossible de récupérer l\'identifiant du client.',
+      });
+      return;
+    }
+  
+    this.clientService.accepetDatePropose(idRdv, idclient).subscribe(
+      (response) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Date acceptée',
+          text: response.message || 'La date proposée a été acceptée avec succès.',
+        });
+        this.getList(idclient);
+      },
+      (error) => {
+        console.error('Error fetching list propose:', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Erreur',
+          text: error.error?.message || 'Une erreur est survenue lors de l\'acceptation.',
+        });
+      }
+    );
   }
+  
 }

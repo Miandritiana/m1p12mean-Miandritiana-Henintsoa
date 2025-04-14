@@ -20,7 +20,7 @@ export class ClientService {
     return this.http.get<any>(`${this.url}/rendezvous/proposition/${idclient}`);
   }
   
-  accepetDatePropose(idRdv: string, idclient: string): Observable<any> {
+  accepetDatePropose(idRdv: string, idclient: string | undefined): Observable<any> {
     const data = {
       idrendezvous: idRdv,
       confirmation: 1,

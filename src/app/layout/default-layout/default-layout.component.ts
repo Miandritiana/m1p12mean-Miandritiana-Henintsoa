@@ -74,11 +74,6 @@ export class DefaultLayoutComponent {
           iconComponent: { name: 'cil-home' },
         },
         {
-          name: 'Devis',
-          url: '/devis',
-          iconComponent: { name: 'cil-file' },
-        },
-        {
           name: 'Suivi',
           url: '/suivi',
           iconComponent: { name: 'cil-check-circle' },
@@ -100,12 +95,12 @@ export class DefaultLayoutComponent {
               name: 'Mécanicien',
               url: '/parametre-mecanicien',
               icon: 'nav-icon-bullet',
+            },
+            {
+              name: 'Préstation',
+              url: '/parametre-prestation',
+              icon: 'nav-icon-bullet',
             }
-            // {
-            //   name: 'Préstation',
-            //   url: '/parametre-prestation',
-            //   icon: 'nav-icon-bullet',
-            // },
           ],
         },
         {

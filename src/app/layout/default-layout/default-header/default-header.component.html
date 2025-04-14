@@ -23,7 +23,7 @@
         <ul cDropdownMenu class="pt-0 w-auto">
           <li *ngIf="notifications.length > 0" class="dropdown-header">Notifications</li>
           <li *ngFor="let notif of notifications">
-            <a cDropdownItem href="#" (click)="handleNotifClick($event)">>
+            <a cDropdownItem href="#" (click)="handleNotifClick($event)">
               <svg cIcon class="me-2" name="cilBell"></svg>
               <span 
                 class="d-inline-block"
