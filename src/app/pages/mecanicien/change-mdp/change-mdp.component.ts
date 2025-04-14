@@ -36,20 +36,21 @@ export class ChangeMdpComponent implements OnInit {
     this.iduser = this.localStorageService.getLoginInfo()?.iduser ?? '';
   }
   ngOnInit(): void {
-    const userRole = this.localStorageService.getLoginInfo()?.role ?? '';
 
-    if (userRole != '2') {
+    const userRole = this.localStorageService.getLoginInfo()?.role ?? '';
+    const iduser = this.localStorageService.getLoginInfo()?.iduser ?? '';
+
+    if (iduser == '') {
       Swal.fire({
         icon: 'error',
-        title: 'Accès refusé',
-        text: 'Vous n\'avez pas accès à cette page.',
+        title: 'Vous n\'êtes pas connecter.',
+        text: 'Vous devez vous connecter.',
         confirmButtonText: 'OK'
       }).then(() => {
         this.router.navigate(['/login']);
       });
     }
 
-    const iduser = this.localStorageService.getLoginInfo()?.iduser ?? '';
 
     // this.change(iduser, '1234', '1234');
   }

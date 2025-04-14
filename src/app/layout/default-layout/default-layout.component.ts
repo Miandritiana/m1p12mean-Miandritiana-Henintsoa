@@ -78,6 +78,11 @@ export class DefaultLayoutComponent {
           url: '/suivi',
           iconComponent: { name: 'cil-check-circle' },
         },
+        {
+          name: 'Changer mot de passe',
+          url: '/change-mdp',
+          iconComponent: { name: 'cil-pencil' },
+        }
       ],
       "3": [
         { title: true, name: 'Manager' },
@@ -108,6 +113,11 @@ export class DefaultLayoutComponent {
           url: '/histo-prestation',
           iconComponent: { name: 'cil-list' },
         },
+        {
+          name: 'Changer mot de passe',
+          url: '/change-mdp',
+          iconComponent: { name: 'cil-pencil' },
+        }
       ],
       "2": [
         { title: true, name: 'Mécanicien' },
