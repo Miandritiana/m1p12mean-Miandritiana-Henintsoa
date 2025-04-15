@@ -54,6 +54,7 @@ export class GestionMecanicienComponent implements OnInit {
     telephone: '',
     mdp: ''
   };
+  editedIndex: number | null = null;
 
   constructor(private mecanicienService: CrudMecanicienService) {}
 
@@ -110,17 +111,40 @@ export class GestionMecanicienComponent implements OnInit {
     };
   }
 
-  editMecanicien(mecanicien: any) {
-    // const updatedMecanicien = { ...mecanicien, nom: 'Modifié' };
-    // this.mecanicienService.modifierMecanicien(mecanicien.id, updatedMecanicien).subscribe(() => {
-    //   this.loadMecaniciens();
-    // });
+  editMecanicien(index: number): void {
+    this.editedIndex = index;
   }
 
-  deleteMecanicien(id: string) {
-    // if (confirm('Êtes-vous sûr de vouloir supprimer ce mécanicien ?')) {
-    //   // Call delete service when implemented
-    // }
+  editMecanicienValider(mecanicien: any): void {
+    Swal.fire({
+      title: 'Confirmer la modification ?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Oui, modifier',
+      cancelButtonText: 'Annuler',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.mecanicienService.modifierMecanicien(mecanicien._id, mecanicien).subscribe({
+          next: () => {
+            this.loadMecaniciens();
+            this.editedIndex = null;
+            Swal.fire({
+              title: 'Succès',
+              text: 'Le mécanicien a bien été modifié.',
+              icon: 'success',
+              confirmButtonText: 'OK',
+            });
+          },
+          error: (err) => {
+            Swal.fire({
+              title: 'Erreur',
+              text: err.error?.message || 'Une erreur est survenue lors de la modification.',
+              icon: 'error',
+              confirmButtonText: 'Fermer',
+            });
+          }
+        });
+      }
+    });
   }
-
 }

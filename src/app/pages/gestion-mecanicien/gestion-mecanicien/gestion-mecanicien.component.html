@@ -24,17 +24,34 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let mecanicien of mecaniciens">
+              <tr *ngFor="let mecanicien of mecaniciens; let i = index">
                 <td class="d-flex">
-                  <button (click)="editMecanicien(mecanicien)" class="btn btn-warning me-2">✏️</button>
-                  <button (click)="deleteMecanicien(mecanicien.id)" class="btn btn-danger">🗑️</button>
+                  <button *ngIf="editedIndex !== i" (click)="editMecanicien(i)" class="btn btn-warning me-2">✏️</button>
+                  <button *ngIf="editedIndex === i" (click)="editMecanicienValider(mecanicien)" class="btn btn-success me-2">💾</button>
                 </td>
-                <td>{{ mecanicien.nom }}</td>
-                <td>{{ mecanicien.prenom }}</td>
-                <td>{{ mecanicien.email }}</td>
-                <td>{{ mecanicien.telephone }}</td>
+            
+                <td>
+                  <input *ngIf="editedIndex === i" [(ngModel)]="mecanicien.nom" type="text" class="form-control" />
+                  <span *ngIf="editedIndex !== i">{{ mecanicien.nom }}</span>
+                </td>
+            
+                <td>
+                  <input *ngIf="editedIndex === i" [(ngModel)]="mecanicien.prenom" type="text" class="form-control" />
+                  <span *ngIf="editedIndex !== i">{{ mecanicien.prenom }}</span>
+                </td>
+            
+                <td>
+                  <input *ngIf="editedIndex === i" [(ngModel)]="mecanicien.email" type="email" class="form-control" />
+                  <span *ngIf="editedIndex !== i">{{ mecanicien.email }}</span>
+                </td>
+            
+                <td>
+                  <input *ngIf="editedIndex === i" [(ngModel)]="mecanicien.telephone" type="text" class="form-control" />
+                  <span *ngIf="editedIndex !== i">{{ mecanicien.telephone }}</span>
+                </td>
               </tr>
             </tbody>
+            
           </table>
         </c-card-body>
       </c-card>

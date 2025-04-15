@@ -40,7 +40,7 @@ export class ChangeMdpComponent implements OnInit {
     const userRole = this.localStorageService.getLoginInfo()?.role ?? '';
     const iduser = this.localStorageService.getLoginInfo()?.iduser ?? '';
 
-    if (iduser == '') {
+    if (iduser === '') {
       Swal.fire({
         icon: 'error',
         title: 'Vous n\'êtes pas connecter.',
