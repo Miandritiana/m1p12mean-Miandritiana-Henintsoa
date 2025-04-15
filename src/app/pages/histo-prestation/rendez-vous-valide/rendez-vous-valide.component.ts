@@ -123,6 +123,7 @@ export class RendezVousValideComponent implements OnInit {
   }
 
   selectAvancement(item: any) {
+    console.log(item);
     this.selectedAvancement = item;
     this.selectedAvancementNumber = Number(this.selectedAvancement);
   }

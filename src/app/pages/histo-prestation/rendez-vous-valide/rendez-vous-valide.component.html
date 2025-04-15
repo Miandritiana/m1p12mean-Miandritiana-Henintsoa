@@ -5,7 +5,7 @@
           <input type="datetime-local" class="form-control w-20 me-2" [(ngModel)]="selectedDate">
 
           <c-dropdown>
-            <button  color="primary" cDropdownToggle cButton class="w-40 me-2">
+            <button  color="secondary" cDropdownToggle cButton class="w-40 me-2">
               {{ selectedAvancement ? getBadgeLabel(selectedAvancementNumber) : 'Sélectionner un avancement' }}
             </button>
           
@@ -18,7 +18,7 @@
             </ul>
           </c-dropdown>
 
-          <button class="btn btn-outline-primary w-40" (click)="appliquer()">Appliquer</button>
+          <button class="btn btn-primary w-40" (click)="appliquer()">Appliquer</button>
 
         </div>
     </div>

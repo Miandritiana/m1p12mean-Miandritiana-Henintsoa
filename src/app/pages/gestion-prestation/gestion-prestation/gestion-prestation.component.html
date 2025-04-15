@@ -1,1 +1,83 @@
-<p>gestion-prestation works!</p>
+<c-row class="mt-4">
+    <h2>Gestion prestation</h2>
+    <c-col xs="10">
+        <h3>Prestation</h3>
+      <c-card>
+        <c-card-body>
+          <table cTable striped hover>
+            <thead>
+              <tr>
+                <th>Actions</th>
+                <th>Libelle</th>
+                <th>Type Moteur</th>
+                <th>Modele</th>
+                <th>Catégories</th>
+                <th>Prix unitaire</th>
+              </tr>
+              <tr>
+                <td>
+                  <button (click)="addPrestation()" class="btn btn-primary">+</button>
+                </td>
+                <td><input type="text" class="form-control" placeholder="Libelle" [(ngModel)]="newPrestation.nom"/></td>
+                <td>
+                    <select class="form-control" [(ngModel)]="newPrestation.idtypemoteur">
+                        <option *ngFor="let typemoteur of typeMoteur" [value]="typemoteur._id">{{ typemoteur.nom }}</option>
+                    </select>
+                </td>
+                <td>
+                    <select class="form-control" [(ngModel)]="newPrestation.idmodele">
+                        <option *ngFor="let modele of modeles" [value]="modele._id">{{ modele.nom }}</option>
+                    </select>
+                </td>
+                <td>
+                    <select class="form-control" [(ngModel)]="newPrestation.idcategorieprestation">
+                        <option *ngFor="let categorie of categoriePrestation" [value]="categorie._id">{{ categorie.nom }}</option>
+                    </select>
+                </td>
+                <td><input type="number" class="form-control" [(ngModel)]="newPrestation.prixunitaire" /></td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let prestation of prestations; let i = index">
+                <td class="d-flex">
+                  <button *ngIf="editedIndex !== i" (click)="editPrestation(i)" class="btn btn-warning me-2">✏️</button>
+                  <button *ngIf="editedIndex === i" (click)="editPrestationValider(prestation)" class="btn btn-success me-2">💾</button>
+                  <button (click)="confirmDeletePrestation(prestation._id)" class="btn btn-danger me-2">🗑️</button>
+                </td>
+            
+                <td>
+                  <!-- <input *ngIf="editedIndex === i" [(ngModel)]="prestation.nom" type="text" class="form-control" /> -->
+                  <span *ngIf="editedIndex !== i">{{ prestation.nom }}</span>
+                </td>
+            
+                <td>
+                  <!-- <input *ngIf="editedIndex === i" [(ngModel)]="prestation.prenom" type="text" class="form-control" /> -->
+                  <span *ngIf="editedIndex !== i">{{ prestation.idtypemoteur.nom }}</span>
+                </td>
+            
+                <td>
+                  <!-- <input *ngIf="editedIndex === i" [(ngModel)]="prestation.email" type="email" class="form-control" /> -->
+                  <span *ngIf="editedIndex !== i">{{ prestation.idmodele.nom }}</span>
+                </td>
+            
+                <td>
+                  <!-- <input *ngIf="editedIndex === i" [(ngModel)]="prestation.telephone" type="text" class="form-control" /> -->
+                  <span *ngIf="editedIndex !== i">{{ prestation.idcategorieprestation.nom }}</span>
+                </td>
+
+                <td>
+                  <!-- <input *ngIf="editedIndex === i" [(ngModel)]="prestation.prixunitaire" type="number" class="form-control" /> -->
+                  <span *ngIf="editedIndex !== i">{{ prestation.prixunitaire }}</span>
+                </td>
+              </tr>
+            </tbody>
+            
+          </table>
+        </c-card-body>
+      </c-card>
+    </c-col>
+
+    <c-col xs="2">
+    </c-col>
+
+</c-row>
