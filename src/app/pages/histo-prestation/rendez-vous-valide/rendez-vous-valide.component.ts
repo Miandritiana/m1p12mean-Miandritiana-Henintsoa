@@ -14,7 +14,8 @@ import {
   RowComponent,
   TextColorDirective,
   ModalModule,
-  FormCheckComponent
+  FormCheckComponent,
+  DropdownModule
 }
 from '@coreui/angular';
 
@@ -23,9 +24,10 @@ import { LocalStorageService } from '../../../services/local-storage.service';
 import { Router } from '@angular/router';
 import { ManagerService } from '../../../services/manager.service';
 import { FormatCurrencyPipe } from '../../../validator/FormatCurrencyPipe';
-import { format } from 'date-fns';
+import { format, isThisISOWeek } from 'date-fns';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { uniqueId } from 'lodash-es';
 
 @Component({
   selector: 'app-rendez-vous-valide',
@@ -47,7 +49,8 @@ import Swal from 'sweetalert2';
     FormCheckComponent,
     NgFor, NgStyle, NgIf, NgClass,
     FormatCurrencyPipe,
-    FormsModule, CommonModule
+    FormsModule, CommonModule,
+    DropdownModule
   ],
   templateUrl: './rendez-vous-valide.component.html',
   styleUrl: './rendez-vous-valide.component.scss'
@@ -62,6 +65,10 @@ export class RendezVousValideComponent implements OnInit {
     selectedDate: string = '';
     selectedDateFormated: Date | null = null;
 
+    selectedAvancement: string = '';
+    selectedAvancementNumber: number | undefined = 0;
+    avancementList: any = [0, 1, 2, 3];
+
   constructor (
     private localStorageService : LocalStorageService,
     private router: Router,
@@ -74,6 +81,8 @@ export class RendezVousValideComponent implements OnInit {
   }
   getBadgeClass(avancement: number): string {
     switch (avancement) {
+      case 0:
+        return 'bg-info';
       case 1:
         return 'bg-warning'; // En attente (yellow)
       case 2:
@@ -85,8 +94,10 @@ export class RendezVousValideComponent implements OnInit {
     }
   }
 
-  getBadgeLabel(avancement: number): string {
+  getBadgeLabel(avancement: number | undefined): string {
     switch (avancement) {
+      case 0:
+        return 'Tous';
       case 1:
         return 'En attente';
       case 2:
@@ -111,6 +122,11 @@ export class RendezVousValideComponent implements OnInit {
     );
   }
 
+  selectAvancement(item: any) {
+    this.selectedAvancement = item;
+    this.selectedAvancementNumber = Number(this.selectedAvancement);
+  }
+
   appliquer() {
     const dateObject = new Date(this.selectedDate);
     this.selectedDateFormated = new Date(Date.UTC(
@@ -121,9 +137,9 @@ export class RendezVousValideComponent implements OnInit {
       dateObject.getMinutes()
     ));
 
-    console.log(this.selectedDateFormated);
+    let avancementParam = this.selectedAvancementNumber === 0 ? undefined : this.selectedAvancementNumber;
 
-    this.managerService.histoRdvValider(this.selectedDateFormated, undefined).subscribe(
+    this.managerService.histoRdvValider(this.selectedDateFormated, avancementParam).subscribe(
       (data) => {
       this.histoRdvValider = data;
       },
