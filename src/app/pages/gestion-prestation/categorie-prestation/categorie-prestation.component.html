@@ -1,1 +1,28 @@
-<p>categorie-prestation works!</p>
+<h3 class="mb-3">Categorie prestation</h3>
+<table cTable striped hover>
+<thead>
+    <tr>
+    <th>Actions</th>
+    <th>Libelle</th>
+    </tr>
+    <tr>
+    <td>
+        <button (click)="addCategorie()" class="btn btn-primary">+</button>
+    </td>
+    <td><input type="text" class="form-control" placeholder="Libelle" [(ngModel)]="newCategorie.nom"/></td>
+    </tr>
+</thead>
+<tbody>
+
+    <tr *ngFor="let categorie of categoriePrestation; let i = index">
+    <td class="d-flex">
+        <button (click)="deleteCategorrieprestation(categorie._id)" class="btn btn-danger me-2">🗑️</button>
+    </td>
+
+    <td>
+        <span>{{ categorie.nom }}</span>
+    </td>
+    </tr>
+</tbody>
+
+</table>

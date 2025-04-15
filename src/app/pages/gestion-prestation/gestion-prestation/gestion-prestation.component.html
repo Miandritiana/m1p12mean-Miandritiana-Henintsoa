@@ -1,9 +1,10 @@
 <c-row class="mt-4">
     <h2>Gestion prestation</h2>
-    <c-col xs="10">
-        <h3>Prestation</h3>
-      <c-card>
-        <c-card-body>
+    <c-col xs="8">
+        <div class="d-flex justify-content-between">
+            <h3 class="mb-3">Prestation</h3>
+            <button class="btn btn-outline-primary mb-1" (click)="reload()">🔄</button>
+        </div>
           <table cTable striped hover>
             <thead>
               <tr>
@@ -79,11 +80,10 @@
             </tbody>
             
           </table>
-        </c-card-body>
-      </c-card>
     </c-col>
 
-    <c-col xs="2">
+    <c-col xs="4">
+        <app-categorie-prestation></app-categorie-prestation>
     </c-col>
 
 </c-row>

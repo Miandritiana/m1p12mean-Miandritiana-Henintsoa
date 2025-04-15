@@ -37,4 +37,11 @@ export class CrudPrestationService {
   editPrestation(idPrestation: string, prestation: any): Observable<any> {
     return this.http.put<any>(`${this.url}/prestation/${idPrestation}`, prestation);
   }
+
+  addCategoriePrestation(nom: string): Observable<any> {
+    const data = {
+      nom: nom
+    }
+    return this.http.post<any>(`${this.url}/categorieprestation/`, data);
+  }
 }

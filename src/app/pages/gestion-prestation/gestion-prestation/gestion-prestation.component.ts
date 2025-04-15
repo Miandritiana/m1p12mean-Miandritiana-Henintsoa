@@ -19,6 +19,7 @@ import {
 import { CrudPrestationService } from '../../../services/crud-prestation.service';
 import Swal from 'sweetalert2';
 import { FormsModule } from '@angular/forms';
+import { CategoriePrestationComponent } from '../categorie-prestation/categorie-prestation.component';
 
 @Component({
   selector: 'app-gestion-prestation',
@@ -38,7 +39,8 @@ import { FormsModule } from '@angular/forms';
     TextColorDirective,
     TableDirective,
     NgFor, NgStyle, NgIf,
-    FormsModule
+    FormsModule,
+    CategoriePrestationComponent
   ],
   templateUrl: './gestion-prestation.component.html',
   styleUrl: './gestion-prestation.component.scss'
@@ -66,6 +68,10 @@ export class GestionPrestationComponent implements OnInit{
     this.loadPrestation();
     this.loadTypeMoteur();
     this.loadModeles();
+    this.loadCategorie();
+  }
+
+  reload() {
     this.loadCategorie();
   }
 
