@@ -40,33 +40,39 @@
             <tbody>
               <tr *ngFor="let prestation of prestations; let i = index">
                 <td class="d-flex">
-                  <button *ngIf="editedIndex !== i" (click)="editPrestation(i)" class="btn btn-warning me-2">✏️</button>
-                  <button *ngIf="editedIndex === i" (click)="editPrestationValider(prestation)" class="btn btn-success me-2">💾</button>
-                  <button (click)="confirmDeletePrestation(prestation._id)" class="btn btn-danger me-2">🗑️</button>
+                    <button (click)="confirmDeletePrestation(prestation._id)" class="btn btn-danger me-2">🗑️</button>
+                    <button *ngIf="editedIndex !== i" (click)="editPrestation(i)" class="btn btn-warning me-2">✏️</button>
+                    <button *ngIf="editedIndex === i" (click)="editPrestationValider(prestation)" class="btn btn-success me-2">💾</button>
                 </td>
             
                 <td>
-                  <!-- <input *ngIf="editedIndex === i" [(ngModel)]="prestation.nom" type="text" class="form-control" /> -->
+                  <input *ngIf="editedIndex === i" [(ngModel)]="prestation.nom" type="text" class="form-control" />
                   <span *ngIf="editedIndex !== i">{{ prestation.nom }}</span>
                 </td>
             
                 <td>
-                  <!-- <input *ngIf="editedIndex === i" [(ngModel)]="prestation.prenom" type="text" class="form-control" /> -->
-                  <span *ngIf="editedIndex !== i">{{ prestation.idtypemoteur.nom }}</span>
+                    <select *ngIf="editedIndex === i" class="form-control" [(ngModel)]="prestation.idtypemoteur._id">
+                        <option *ngFor="let type of typeMoteur" [value]="type._id">{{ type.nom }}</option>
+                      </select>
+                    <span *ngIf="editedIndex !== i">{{ prestation.idtypemoteur.nom }}</span>
                 </td>
             
                 <td>
-                  <!-- <input *ngIf="editedIndex === i" [(ngModel)]="prestation.email" type="email" class="form-control" /> -->
-                  <span *ngIf="editedIndex !== i">{{ prestation.idmodele.nom }}</span>
+                    <select *ngIf="editedIndex === i" class="form-control" [(ngModel)]="prestation.idmodele._id">
+                        <option *ngFor="let modele of modeles" [value]="modele._id">{{ modele.nom }}</option>
+                    </select>
+                    <span *ngIf="editedIndex !== i">{{ prestation.idmodele.nom }}</span>
                 </td>
             
                 <td>
-                  <!-- <input *ngIf="editedIndex === i" [(ngModel)]="prestation.telephone" type="text" class="form-control" /> -->
-                  <span *ngIf="editedIndex !== i">{{ prestation.idcategorieprestation.nom }}</span>
+                    <select *ngIf="editedIndex === i" class="form-control" [(ngModel)]="prestation.idcategorieprestation._id">
+                        <option *ngFor="let categorie of categoriePrestation" [value]="categorie._id">{{ categorie.nom }}</option>
+                    </select>
+                    <span *ngIf="editedIndex !== i">{{ prestation.idcategorieprestation.nom }}</span>
                 </td>
 
                 <td>
-                  <!-- <input *ngIf="editedIndex === i" [(ngModel)]="prestation.prixunitaire" type="number" class="form-control" /> -->
+                  <input *ngIf="editedIndex === i" [(ngModel)]="prestation.prixunitaire" type="number" class="form-control" />
                   <span *ngIf="editedIndex !== i">{{ prestation.prixunitaire }}</span>
                 </td>
               </tr>

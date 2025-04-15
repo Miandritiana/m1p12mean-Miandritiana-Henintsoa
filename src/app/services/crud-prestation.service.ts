@@ -34,4 +34,7 @@ export class CrudPrestationService {
     return this.http.delete<any>(`${this.url}/prestation/${id}`);
   }
   
+  editPrestation(idPrestation: string, prestation: any): Observable<any> {
+    return this.http.put<any>(`${this.url}/prestation/${idPrestation}`, prestation);
+  }
 }

@@ -147,6 +147,26 @@ export class GestionPrestationComponent implements OnInit{
   }
 
   editPrestationValider(prestation: any) {
+    this.crudPrestationService.editPrestation(prestation._id, prestation).subscribe({
+      next: () => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Modifié !',
+          text: 'La prestation a été modifiée avec succès.',
+          confirmButtonColor: '#28a745'
+        });
+        this.loadPrestation();
+        this.editedIndex = null;
+      },
+      error: (err) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Erreur',
+          text: err?.error?.message || 'Une erreur est survenue lors de la modification de la prestation.',
+          confirmButtonColor: '#d33'
+        });
+      }
+    });
   }
 
   confirmDeletePrestation(idPrestation: any) {
