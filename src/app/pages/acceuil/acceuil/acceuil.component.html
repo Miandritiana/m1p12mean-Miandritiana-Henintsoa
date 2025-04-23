@@ -26,7 +26,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let rowData of rdvAttente">
-                <td class="text-nowrap">{{ rowData.date ? (rowData.date.toString() | date: 'EEEE, d MMMM y HH:mm':'UTC') : '' }}</td>
+                <td class="text-nowrap">{{ rowData.date ? (rowData.date.toString() | date: 'EEEE, d MMMM y HH:mm') : '' }}</td>
                 <td>
                   <ul class="mb-0">
                     <li *ngFor="let prestation of rowData.prestations">
