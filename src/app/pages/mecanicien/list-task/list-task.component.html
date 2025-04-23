@@ -1,4 +1,30 @@
 <c-row class="mt-4" *ngIf="isAppear">
+
+  <div class="mb-3">
+    <h4>Recherche par date ou par avancement</h4>
+    <div class="d-flex justify-content-between">
+      <input type="datetime-local" class="form-control w-20 me-2" [(ngModel)]="selectedDate">
+
+      <c-dropdown>
+        <button  color="secondary" cDropdownToggle cButton class="w-40 me-2">
+          {{ selectedAvancement ? getBadgeLabel(selectedAvancementNumber) : 'Sélectionner un avancement' }}
+        </button>
+      
+        <ul cDropdownMenu >
+          <li cDropdownItem *ngFor="let item of avancementList">
+            <span class="badge rounded-pill" [ngClass]="getBadgeClass(item)" (click)="selectAvancement(item)" style="cursor: pointer;">
+              {{ getBadgeLabel(item) }}
+            </span>
+          </li>
+        </ul>
+      </c-dropdown>
+
+      <button class="btn btn-primary w-40" (click)="appliquer()">Appliquer</button>
+
+    </div>
+  </div>
+
+
     <div class="col-12">
       <div class="d-flex justify-content-between">
         <h3>Tâches</h3>
