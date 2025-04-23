@@ -4,7 +4,7 @@ import { ClientService } from 'src/app/services/client.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service'; 
 import { NgFor, NgStyle, NgIf } from '@angular/common';
 import { FormatDatePipe } from '../../../validator/FormatDatePipe';
-
+import { CommonModule } from '@angular/common';
 import {
   ButtonDirective,
   ColComponent,
@@ -27,6 +27,7 @@ import { Router } from '@angular/router';
     RowComponent,
     TableDirective,
     TextColorDirective,
+    CommonModule
   ],
   providers: [ClientService, LocalStorageService],
   templateUrl: './list-new-propose-date.component.html',

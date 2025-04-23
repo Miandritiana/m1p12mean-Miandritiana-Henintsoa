@@ -44,3 +44,10 @@ export class FormatDatePipe implements PipeTransform {
     return datePipe.transform(value, timeFormat) || '';
   }
 }
+
+
+
+
+
+// In use
+// formatDate:'full':'fr'

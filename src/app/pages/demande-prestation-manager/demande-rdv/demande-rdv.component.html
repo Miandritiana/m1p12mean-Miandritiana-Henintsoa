@@ -31,7 +31,7 @@
                           name="date{{client.idrendezvous}}"
                           [value]="date"
                           (change)="selectDate(date, client.idrendezvous)">
-                        <span>{{ date | date :'dd/MM/yyyy HH:mm':'UTC' }}</span>
+                        <span>{{ date | date: 'EEEE, d MMMM y HH:mm':'UTC' }}</span>
                       </div>
                     </td>
                     <td class="d-flex">

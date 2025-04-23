@@ -20,7 +20,7 @@
             </thead>
             <tbody>
             <tr *ngFor="let rowData of listSuivi">
-                <td class="align-items-center">{{ rowData.datevalide | formatDate:'full':'fr' }}</td>
+                <td class="align-items-center">{{ rowData.datevalide | date: 'EEEE, d MMMM y HH:mm':'UTC' }}</td>
                 <td class="align-items-center">{{ rowData.immatriculation }}</td>
                 <td class="align-items-center">{{ rowData.mecanicien }}</td>
                 <td>

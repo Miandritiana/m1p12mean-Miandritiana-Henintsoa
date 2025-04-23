@@ -10,7 +10,7 @@
 
                 <div class="selected-dates d-flex flex-wrap gap-2 mt-3 justify-content-center">
                     <span *ngFor="let date of selectedDates" class="badge bg-primary d-flex align-items-center p-2">
-                       {{ date | formatDate:'full':'fr' }}
+                       {{ date | date: 'EEEE, d MMMM y HH:mm':'UTC' }}
                       <i class="ms-2" style="cursor: pointer; color: white;" (click)="removeDate(date)">&#x2716;</i>
                     </span>
                 </div>

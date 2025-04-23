@@ -5,11 +5,12 @@ import { DemandePrestationService } from '../../../services/demande-prestation.s
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { FormatDatePipe } from '../../../validator/FormatDatePipe';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-rendez-vous',
   standalone: true,
-  imports: [FormsModule, NgIf, NgFor, ReactiveFormsModule, FormatDatePipe],
+  imports: [FormsModule, NgIf, NgFor, ReactiveFormsModule, FormatDatePipe, CommonModule],
   templateUrl: './rendez-vous.component.html',
   styleUrl: './rendez-vous.component.scss'
 })

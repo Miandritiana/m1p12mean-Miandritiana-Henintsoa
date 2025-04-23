@@ -22,7 +22,7 @@
           </ul>
         </td>
         <td class="text-nowrap">{{ rowData.mecanicien }}</td>
-        <td class="text-nowrap">{{ rowData.propositiondate | formatDate:'full':'fr' }}</td>
+        <td class="text-nowrap">{{ rowData.propositiondate | date: 'EEEE, d MMMM y HH:mm':'UTC' }}</td>
         <td>
           <button
               class="btn btn-success me-2"

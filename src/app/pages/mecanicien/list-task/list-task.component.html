@@ -16,7 +16,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let tache of listTache">
-            <td class="align-items-center">{{ tache.datevalide | date:'dd/MM/yyyy HH:mm':'UTC' }}</td>
+            <td class="align-items-center">{{ tache.datevalide | date: 'EEEE, d MMMM y HH:mm':'UTC' }}</td>
             <td class="align-items-center">{{ tache.client }}</td>
             <td>
               <ul>

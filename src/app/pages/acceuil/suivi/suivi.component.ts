@@ -4,7 +4,7 @@ import { ClientService } from 'src/app/services/client.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service'; 
 import { NgFor, NgStyle, NgIf, NgClass } from '@angular/common';
 import { FormatDatePipe } from '../../../validator/FormatDatePipe';
-
+import { CommonModule } from '@angular/common';
 import {
   ButtonDirective,
   ColComponent,
@@ -31,7 +31,8 @@ import { FormatCurrencyPipe } from '../../../validator/FormatCurrencyPipe';
     TextColorDirective,
     FormatCurrencyPipe,
     CardComponent,
-    CardBodyComponent
+    CardBodyComponent,
+    CommonModule
   ],
   providers: [ClientService, LocalStorageService],
   templateUrl: './suivi.component.html',
