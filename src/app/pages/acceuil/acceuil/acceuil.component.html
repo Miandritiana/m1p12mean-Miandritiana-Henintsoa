@@ -9,7 +9,6 @@
 </c-row>
 
 <c-row class="mt-5">
-    <c-col xs="6">
         <h3>Demande rendez-vous en attente</h3>
         <div *ngIf="errorMessage" class="alert alert-danger">
             {{ errorMessage }}
@@ -46,8 +45,7 @@
             </tbody>
             </table>
         </div>
-    </c-col>
-    <c-col xs="6">
-        <app-list-new-propose-date></app-list-new-propose-date>
-    </c-col>
+</c-row>
+<c-row class="mt-5">
+  <app-list-new-propose-date></app-list-new-propose-date>
 </c-row>

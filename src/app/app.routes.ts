@@ -63,14 +63,20 @@ export const routes: Routes = [
       {
         path: 'tache',
         loadChildren: () => import('./pages/mecanicien/routes').then((m) => m.routes)
-      },
+      }
+    ]
+  },
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    children: [
       {
         path: 'change-mdp',
         loadComponent: () => import('./pages/mecanicien/change-mdp/change-mdp.component').then(m => m.ChangeMdpComponent),
         data: { title: 'Changer le mot de passe' }
       }
     ]
-  },
+  },  
   {
     path: '404',
     loadComponent: () => import('./views/pages/page404/page404.component').then(m => m.Page404Component),
